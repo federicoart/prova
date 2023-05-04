@@ -23,7 +23,8 @@ stages:
     - task: Docker@2
       displayName: Build an image
       inputs:
-        command: build
-        dockerfile: '/dockerfile'
-        tags: |
-          $(tag)
+        containerRegistry: 'kuberegistry2023'
+        repository: 'prova'
+        command: 'build'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(tag)'
