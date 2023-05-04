@@ -10,6 +10,12 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
+ dockerRegistryServiceConnection: 'eb0a6819-ff89-46c8-8569-d864ff13a959'
+  imgRepo: 'prova'
+  containerRegistry: 'kuberegistry2023.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+
+   vmImageName: 'ubuntu-latest'
 
 stages:
 - stage: Build
@@ -18,12 +24,14 @@ stages:
   - job: Build
     displayName: Build
     pool: fedePool
+      vmImage: ubuntu-latest
     steps:
     - task: Docker@2
-      displayName: Build an image
+      displayName: Build to registry
       inputs:
-        containerRegistry: 'kuberegistry2023'
-        repository: 'prova'
+        command: buildAndPush
+        containerRegistry: 'kuberegistry2023.azurecr.io'
+        repository: '$(imgRepo)'
         command: 'build'
-        Dockerfile: 'app/Dockerfile'
+        Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: '$(tag)'
