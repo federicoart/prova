@@ -13,7 +13,8 @@ variables:
   dockerRegistryServiceConnection: eb0a6819-ff89-46c8-8569-d864ff13a959
   imgRepo: prova
 
-vmImageName: ubuntu-latest 
+  vmImageName: ubuntu-latest 
+ 
 
 stages:
 - stage: Build
