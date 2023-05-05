@@ -31,5 +31,5 @@ stages:
         command: buildAndPush
         containerRegistry: kuberegistry2023.azurecr.io
         repository: $(imgRepo)
-        Dockerfile: $(Build.SourcesDirectory)/.dockerfile
+        Dockerfile: $(Build.SourcesDirectory)/Dockerfile
         tags: $(tag)
